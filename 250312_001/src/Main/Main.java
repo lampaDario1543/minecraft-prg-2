@@ -10,6 +10,8 @@ public class Main {
         //setBlocks(map); //es. 1.2.4
         //es. 1.3.3
         Block b=new Block('S', true, false);
+        Block b2=new Block('C', false, false);
+        map.insert_at_coords(5,5,b2);
         Scanner scan = new Scanner(System.in);
         int x,y;
         System.out.print("Enter the x coordinate: ");

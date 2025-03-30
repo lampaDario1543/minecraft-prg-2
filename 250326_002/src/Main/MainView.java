@@ -1,12 +1,11 @@
-package ui;
+package Main;
 
-import data.Block;
-import data.Furnace;
-import data.SmeltableBlock;
-import data.blocks.BlockFactory;
+import data.interfaces.Block;
+import utils.Furnace;
+import data.interfaces.SmeltableBlock;
+import utils.BlockFactory;
+import ui.Map;
 import utils.Coordinates;
-
-import java.util.Scanner;
 
 public class MainView {
     private Furnace f;
@@ -40,7 +39,7 @@ public class MainView {
             m.insert_at_coords(blockToMove, bf.default_block());
             f.setInput((SmeltableBlock) block);
         }else{
-            System.out.println("You can't smelt the block at "+x+" "+y);
+            System.out.println("You can't smelt the block " + m.getBlock(blockToMove)+" at "+ blockToMove);
         }
     }
 }

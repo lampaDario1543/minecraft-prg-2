@@ -21,53 +21,53 @@ public class Map {
     }
     //
     public void change_cell(int x, int y) {
-        if(x>ROW-1 || y<0 || y>COL-1 || y<0)
+        if(y>ROW-1 || y<0 || x>COL-1 || x<0)
             return;
-        blocks[x][y].setContent('A');
+        blocks[y][x].setContent('A');
     }
     //es. 1.3.2
     private void swap(int x, int y) {
-        if(x >= ROW-1 || y > COL-1)
+        if(y >= ROW-1 || x > COL-1)
             return;
-        Block temp=blocks[x][y];
-        blocks[x][y]=blocks[x+1][y];
-        blocks[x+1][y]=temp;
+        Block temp=blocks[y][x];
+        blocks[y][x]=blocks[y+1][x];
+        blocks[y+1][x]=temp;
     }
     //es 1.3.2
     public void insert_at_coords(int x, int y, Block block) {
-        if(x>ROW-1 || x<0 || y>COL-1 || y<0) return;
-        blocks[x][y].setContent(block.getContent());
+        if(y>ROW-1 || y<0 || x>COL-1 || x<0) return;
+        blocks[y][x]=block;
         if(block.isFalls_with_gravity()){
-            int i=x;
-            while(i<ROW-1 && blocks[i+1][y].isFall_through()){
-                swap(i,y);
+            int i=y;
+            while(i<ROW-1 && blocks[i+1][x].isFall_through()){
+                swap(x,i);
                 ++i;
             }
         }
     }
     //es. 1.3.2.1
     public void insert_rec(int x, int y, Block block) {
-        if(x>ROW-1 || x<0 || y>COL-1 || y<0) return;
-        blocks[x][y]=block;
+        if(y>ROW-1 || y<0 || x>COL-1 || x<0) return;
+        blocks[y][x]=block;
         insert_rec_aux(x,y,block);
     }
     public void insert_rec_aux(int x, int y, Block block) {
-        if(!block.isFalls_with_gravity() ||  x==ROW-1 || !blocks[x+1][y].isFall_through()){
+        if(!block.isFalls_with_gravity() ||  y==ROW-1 || !blocks[y+1][x].isFall_through()){
             return;
         }
         swap(x,y);
-        insert_rec(x+1,y,block);
+        insert_rec_aux(x,y+1,block);
     }
 
     //equals to insert_at_coords
     //es. 1.3.2.2
     public void insert_iter(int x, int y, Block block) {
-        if(x>ROW-1 || x<0 || y>COL-1 || y<0) return;
-        blocks[x][y].setContent(block.getContent());
+        if(y>ROW-1 || y<0 || x>COL-1 || x<0) return;
+        blocks[y][x]=block;
         if(block.isFalls_with_gravity()){
-            int i=x;
-            while(i<ROW-1 && blocks[i+1][y].isFall_through()){
-                swap(i,y);
+            int i=y;
+            while(i<ROW-1 && blocks[i+1][x].isFall_through()){
+                swap(x,i);
                 ++i;
             }
         }

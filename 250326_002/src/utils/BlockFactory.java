@@ -1,5 +1,6 @@
-package data.blocks;
+package utils;
 
+import data.blocks.*;
 import data.interfaces.Block;
 
 import java.util.Random;

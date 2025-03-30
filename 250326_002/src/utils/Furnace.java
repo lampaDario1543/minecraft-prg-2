@@ -1,7 +1,8 @@
-package data;
+package utils;
 
-import data.blocks.BlockFactory;
 import data.blocks.NullBlock;
+import data.interfaces.Block;
+import data.interfaces.SmeltableBlock;
 
 public class Furnace {
     private SmeltableBlock input;
