@@ -151,35 +151,44 @@ public class Map {
             }
         }
     }
-    private boolean is_pickable(Coordinates coords){
-        if(!coords.isInBound()) return false;
+    private boolean is_pickable(Coordinates coords) throws CoordinatesException{
+        if(!coords.isInBound()) throw new CoordinatesException();
         Block b=blocks[coords.getY()][coords.getX()];
         return b.isPickable();
     }
-    public void apply_gravity_above(Coordinates coords){
+    public void apply_gravity_above(Coordinates coords) throws CoordinatesException{
         int y=coords.getY()-1;
         final int x=coords.getX(); //la x è fissata
-        if(!coords.isInBound() || y==-1) return; //coordinate out of bound
+        if(!coords.isInBound() || y==-1) throw new CoordinatesException(); //coordinate out of bound
         Block b=blocks[y][x]; //blocco che potrebbe avere la gravità
         if(b.isFalls_with_gravity()){
             try{
                 this.insert_at_coords(new Coordinates(x,y+1),b);
                 blocks[y][x]=bf.airBlock();
+                this.apply_gravity_above(new Coordinates(x,y));
             }catch(CoordinatesException e){
                 System.out.println("[MAP] I can't insert "+b.getBlockName()+" in "+ coords+" apply_gravity_above()");
             }
-            this.apply_gravity_above(new Coordinates(x,y));
         }
     }
     public Block gimme_pickable(Coordinates coords) throws BlockErrorException {
-        if(this.is_pickable(coords)){ //il controllo delle coordinate lo faccio già dentro a is_pickable
+        boolean is_pickable=false;
+        try{
+            is_pickable=this.is_pickable(coords);
+        }catch(CoordinatesException e){
+            System.out.println("[MAP] Invalid coordinates "+coords+" in gimme_pickable()");
+        }
+        if(is_pickable){ //il controllo delle coordinate lo faccio già dentro a is_pickable
             Block b=blocks[coords.getY()][coords.getX()];
             blocks[coords.getY()][coords.getX()]=bf.airBlock();
-            this.apply_gravity_above(coords);
+            try{
+                this.apply_gravity_above(coords);
+            }catch(CoordinatesException e){
+                System.out.println("[MAP] Invalid coordinates "+coords+" in gimme_pickable()");
+            }
             return b;
         }
         throw new BlockErrorException();
-
     }
     public void addRiver(){this.addRowsOfWater(1);}
     public void addSea(){this.addRowsOfWater(3);}
