@@ -1,7 +1,4 @@
 package utils.exceptions;
 
-public class CoordinatesException extends RuntimeException {
-  public CoordinatesException(String message) {
-    super(message);
-  }
+public class CoordinatesException extends Exception {
 }
