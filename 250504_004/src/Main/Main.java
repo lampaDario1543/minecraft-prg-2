@@ -38,16 +38,15 @@ public class Main extends Application{
         mainPane.getChildren().addAll(inventoryPane);
         */
         //test for MAP GUI
-        /*
         Map m= new Map();
-        MapPane mapPane = new MapPane(m);
-        mainPane.getChildren().add(mapPane);*/
+        /*MapPane mapPane = new MapPane(m);
+        mainPane.getChildren().add(mapPane);
+        */
         //test for FURNACE GUI
         //mainPane.getChildren().add(new FurnacePane(new SandBlock(), new GlassBlock()));
 
-        MainGui mg= new MainGui();
+        MainGui mg= new MainGui(m);
         mainPane.getChildren().add(mg);
-
         Scene s= new Scene(mainPane, 1280,720);
         primaryStage.setTitle("Minecraft 2D");
         primaryStage.setScene(s);

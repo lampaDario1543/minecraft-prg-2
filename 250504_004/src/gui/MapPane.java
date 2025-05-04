@@ -24,7 +24,7 @@ public class MapPane extends GridPane {
                 try{
                     this.add(new BlockPane(m.getBlock(new Coordinates(i,j))),i,j);
                 }catch(CoordinatesException e){
-                    System.out.println("WTF");
+                    System.out.println("Error in coordinates initialiaze gui map");
                 }
             }
         }
