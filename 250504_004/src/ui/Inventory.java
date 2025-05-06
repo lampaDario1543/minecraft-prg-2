@@ -12,6 +12,7 @@ import utils.exceptions.InventoryException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 
 public class Inventory {
     private ArrayList<Block> blocks;
@@ -57,11 +58,18 @@ public class Inventory {
         }
         this.sort();
     }
+    public Block getBlock(int index) throws InventoryException {
+        if (index < 0 || index >= this.blocks.size()) throw new InventoryException();
+        return this.blocks.get(index);
+    }
     private boolean isInbound(int index){
         if(index<0 || index >= this.blocks.size()) return false;
         return true;
     }
     private void sort(){
         Collections.sort(this.blocks, comparator);
+    }
+    public Iterator<Block> getInventory(){
+        return this.blocks.iterator();
     }
 }

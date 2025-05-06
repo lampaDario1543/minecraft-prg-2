@@ -1,6 +1,7 @@
 package Main;
 
 import data.interfaces.Block;
+import gui.MainGui;
 import ui.Inventory;
 import utils.exceptions.BlockErrorException;
 import utils.Furnace;
@@ -16,14 +17,13 @@ public class MainView {
     private Map m;
     private BlockFactory bf;
     private Inventory inv;
-    public MainView(Furnace f, Map m) {
-       this();
-    }
+    private MainGui mg;
     public MainView() {
         this.f = new Furnace();
         this.bf = new BlockFactory();
         this.m = new Map(bf);
         this.inv = new Inventory(bf);
+        this.mg = new MainGui(this);
     }
     public void display_on_out() {
         m.display_on_out();
@@ -92,5 +92,20 @@ public class MainView {
         }catch(CoordinatesException e){
             System.out.println("[MAIN_VIEW] Coordinates exception in insertTorch() "+coords);
         }
+    }
+    public Map getMap(){
+        return m;
+    }
+    public Furnace getFurnace(){
+        return f;
+    }
+    public Inventory getInv(){
+        return inv;
+    }
+    public MainGui getMainGui(){
+        return mg;
+    }
+    public Inventory getInventory(){
+        return inv;
     }
 }

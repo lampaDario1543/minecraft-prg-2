@@ -9,22 +9,36 @@ import utils.Coordinates;
 import utils.exceptions.CoordinatesException;
 
 public class MapPane extends GridPane {
+    private Map m;
     public MapPane() {
         super();
         initialise_air();
     }
     public MapPane(Map m) {
         super();
-        initialise_map(m);
+        this.m=m;
+        initialise_map();
     }
-    public void initialise_map(Map m){
-        m.display_on_out();
+    public void initialise_map(){
         for(int i=0;i<Coordinates.ROW;i++){
             for(int j=0;j<Coordinates.COL;j++){
                 try{
                     this.add(new BlockPane(m.getBlock(new Coordinates(i,j))),i,j);
                 }catch(CoordinatesException e){
-                    System.out.println("Error in coordinates initialiaze gui map");
+                    System.out.println("Error in coordinates initialise gui map");
+                }
+            }
+        }
+    }
+    public void update_map(){
+        for(int i=0;i<Coordinates.ROW;i++){
+            for(int j=0;j<Coordinates.COL;j++){
+                try{
+                    Coordinates coords= new Coordinates(i,j);
+                    BlockPane bp= this.get_block_at_coord(coords);
+                    bp.changeBlock(m.getBlock(coords));
+                }catch(CoordinatesException e){
+                    System.out.println("Error in coordinates update_map gui map");
                 }
             }
         }
@@ -46,7 +60,7 @@ public class MapPane extends GridPane {
     }
     public BlockPane get_block_at_coord(Coordinates coords) throws CoordinatesException {
         if(!coords.isInBound()) throw new CoordinatesException();
-        return (BlockPane) MapPane.getElementAt(this, coords.getX(), coords.getY());
+        return (BlockPane) MapPane.getElementAt(this, coords.getY(), coords.getX());
     }
     public void setCell(Coordinates coords, Block block) throws CoordinatesException {
         if(!coords.isInBound()) throw new CoordinatesException();

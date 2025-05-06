@@ -45,8 +45,8 @@ public class Main extends Application{
         //test for FURNACE GUI
         //mainPane.getChildren().add(new FurnacePane(new SandBlock(), new GlassBlock()));
 
-        MainGui mg= new MainGui(m);
-        mainPane.getChildren().add(mg);
+        MainView mv= new MainView();
+        mainPane.getChildren().add(mv.getMainGui());
         Scene s= new Scene(mainPane, 1280,720);
         primaryStage.setTitle("Minecraft 2D");
         primaryStage.setScene(s);
