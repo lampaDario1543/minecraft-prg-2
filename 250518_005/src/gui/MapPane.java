@@ -14,7 +14,6 @@ public class MapPane extends GridPane {
         initialise_air();
     }
     public void initialise_map(Map m){
-        m.display_on_out();
         for(int i=0;i<Coordinates.ROW;i++){
             for(int j=0;j<Coordinates.COL;j++){
                 try{

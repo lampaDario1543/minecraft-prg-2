@@ -9,7 +9,6 @@ import utils.exceptions.BlockErrorException;
 import utils.BlockFactory;
 import utils.exceptions.InventoryException;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -23,11 +22,6 @@ public class Inventory {
         this.bf=bf;
         this.blocks = new ArrayList<Block>();
         comparator = new AlphabeticalBlockComparator();
-    }
-    public void display_in_inventory(){
-        for(Block block : this.blocks){
-            block.display_in_inventory();
-        }
     }
     public void add_block(Block b){
         this.blocks.add(b);

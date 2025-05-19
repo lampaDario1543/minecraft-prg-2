@@ -1,10 +1,7 @@
 package controller;
 
-import data.blocks.SandBlock;
 import gui.FurnacePane;
-import utils.Furnace;
-
-import java.util.Scanner;
+import ui.Furnace;
 
 public class FurnaceController implements SimpleController {
     private Furnace f;

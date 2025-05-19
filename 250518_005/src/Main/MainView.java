@@ -4,7 +4,7 @@ import data.blocks.NullBlock;
 import data.interfaces.Block;
 import ui.Inventory;
 import utils.exceptions.BlockErrorException;
-import utils.Furnace;
+import ui.Furnace;
 import data.interfaces.SmeltableBlock;
 import utils.BlockFactory;
 import ui.Map;
@@ -25,21 +25,6 @@ public class MainView {
         this.bf = new BlockFactory();
         this.m = new Map(bf);
         this.inv = new Inventory(bf);
-    }
-    public void display_on_out() {
-        m.display_on_out();
-        System.out.println();
-        System.out.println("#########");
-        System.out.println("#FURNACE#");
-        System.out.println("#########");
-        System.out.println();
-        f.display_on_out();
-        System.out.println();
-        System.out.println("###########");
-        System.out.println("#INVENTORY#");
-        System.out.println("###########");
-        System.out.println();
-        inv.display_in_inventory();
     }
     public void smelt(){
         f.smelt();

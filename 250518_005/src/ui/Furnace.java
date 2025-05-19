@@ -1,8 +1,9 @@
-package utils;
+package ui;
 
 import data.blocks.NullBlock;
 import data.interfaces.Block;
 import data.interfaces.SmeltableBlock;
+import utils.BlockFactory;
 
 public class Furnace {
     private SmeltableBlock input;
@@ -12,10 +13,6 @@ public class Furnace {
         this.bf=new BlockFactory();
         this.input = bf.nullBlock();
         this.output = bf.nullBlock();
-    }
-
-    public void display_on_out(){
-        System.out.println("|" +this.input.toString()+"| --> |"+this.output.toString() +"|");
     }
     public Block smelt(){
         if (!(input instanceof NullBlock) && (output instanceof NullBlock)) {
